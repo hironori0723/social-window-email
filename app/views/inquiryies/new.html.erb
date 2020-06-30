@@ -1,0 +1,35 @@
+<div class='toppage'>
+  <div class="container">
+    <h1> 社会の窓　通知代理サービス</h1>
+    <p>あなたの周りにいる友人の男性の社会の窓が開いていたら、気軽に「社会の窓、開いているよ」と言えるでしょうか？そんな場合の代理をいたします。</p>
+    <%= form_with(model: @inquiry, url: inquiryies_confirm_path, local: true) do |f| %>
+    <% if @inquiry.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <strong>入力内容にミスがあります</strong>
+        <ul>
+          <% @inquiry.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "お名前" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :relationship %>
+        <%= f.select(:relationship, [["友人", "友人"], ["夫婦", "夫婦"], ["恋人", "恋人"], ["先輩", "先輩"], ["後輩", "後輩"]], {}, class: "form-control") %>
+      </div>
+      <div class="form-group"> 
+        <%= f.label :content %>
+        <%= f.text_area :content, autofocus: true, class: "form-control", placeholder: "伝えたいことがあれば入力してください" %>
+      </div>
+        <div class="text-center"><%= f.submit '確認画面へ', class: 'btn btn-success' %></div>
+    <% end %>
+  </div>
+</div>
